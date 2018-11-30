@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>go work | Zkep</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GOPATH与工作空间前面我们在安装Go的时候看到需要设置GOPATH变量，Go从1.1版本到1.7必须设置这个变量，而且不能和Go的安装目录一样，这个目录用来存放Go源码，Go的可运行文件，以及相应的编译之后的包文件。所以这个目录下面有三个子目录：src、bin、pkg 从go 1.8开始，GOPATH环境变量现在有一个默认值，如果它没有被设置。 它在Unix上默认为$HOME/go,在Wind">
+<meta name="keywords" content="codes,go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go work">
+<meta property="og:url" content="https://zkep.github.io.git/2018/06/07/go.01.2/index.html">
+<meta property="og:site_name" content="Zkep">
+<meta property="og:description" content="GOPATH与工作空间前面我们在安装Go的时候看到需要设置GOPATH变量，Go从1.1版本到1.7必须设置这个变量，而且不能和Go的安装目录一样，这个目录用来存放Go源码，Go的可运行文件，以及相应的编译之后的包文件。所以这个目录下面有三个子目录：src、bin、pkg 从go 1.8开始，GOPATH环境变量现在有一个默认值，如果它没有被设置。 它在Unix上默认为$HOME/go,在Wind">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-29T04:38:39.446Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go work">
+<meta name="twitter:description" content="GOPATH与工作空间前面我们在安装Go的时候看到需要设置GOPATH变量，Go从1.1版本到1.7必须设置这个变量，而且不能和Go的安装目录一样，这个目录用来存放Go源码，Go的可运行文件，以及相应的编译之后的包文件。所以这个目录下面有三个子目录：src、bin、pkg 从go 1.8开始，GOPATH环境变量现在有一个默认值，如果它没有被设置。 它在Unix上默认为$HOME/go,在Wind">
+  
+    <link rel="alternate" href="/atom.xml" title="Zkep" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zkep.github.io.git"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/codes">编码</a>
+        
+          <a class="main-nav-link" href="/games">游戏</a>
+        
+          <a class="main-nav-link" href="/films">电影</a>
+        
+          <a class="main-nav-link" href="/musics">音乐</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zkep</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">编译的人生、确定的轨迹里充满着不确定</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go.01.2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/07/go.01.2/" class="article-date">
+  <time datetime="2018-06-07T11:04:22.000Z" itemprop="datePublished">2018-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go work
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="GOPATH与工作空间"><a href="#GOPATH与工作空间" class="headerlink" title="GOPATH与工作空间"></a>GOPATH与工作空间</h2><p>前面我们在安装Go的时候看到需要设置GOPATH变量，Go从1.1版本到1.7必须设置这个变量，而且不能和Go的安装目录一样，这个目录用来存放Go源码，Go的可运行文件，以及相应的编译之后的包文件。所以这个目录下面有三个子目录：src、bin、pkg</p>
+<p>从go 1.8开始，GOPATH环境变量现在有一个默认值，如果它没有被设置。 它在Unix上默认为$HOME/go,在Windows上默认为%USERPROFILE%/go。<br><a id="more"></a></p>
+<h3 id="GOPATH设置"><a href="#GOPATH设置" class="headerlink" title="GOPATH设置"></a>GOPATH设置</h3><p>go 命令依赖一个重要的环境变量：$GOPATH</p>
+<p>Windows系统中环境变量的形式为%GOPATH%，本书主要使用Unix形式，Windows用户请自行替换。</p>
+<p>（注：这个不是Go安装目录。下面以笔者的工作目录为示例，如果你想不一样请把GOPATH替换成你的工作目录。）</p>
+<p>在类 Unix 环境下大概这样设置：</p>
+<pre><code>export GOPATH=/home/zkep/go
+</code></pre><p>为了方便，应该新建以上文件夹，并且上一行加入到 .bashrc 或者 .zshrc 或者自己的 sh 的配置文件中。</p>
+<p>Windows 设置如下，新建一个环境变量名称叫做GOPATH：</p>
+<pre><code>GOPATH=c:\go
+</code></pre><p>GOPATH允许多个目录，当有多个目录时，请注意分隔符，多个目录的时候Windows是分号，Linux系统是冒号，当有多个GOPATH时，默认会将go get的内容放在第一个目录下。</p>
+<p>以上 $GOPATH 目录约定有三个子目录：</p>
+<ul>
+<li>src 存放源代码（比如：.go .c .h .s等）</li>
+<li>pkg 编译后生成的文件（比如：.a）</li>
+<li>bin 编译后生成的可执行文件（为了方便，可以把此目录加入到 $PATH 变量中，如果有多个gopath，那么使用$* {GOPATH//://bin:}/bin添加所有的bin目录）</li>
+</ul>
+<p>以后我所有的例子都是以mygo作为我的gopath目录</p>
+<h3 id="代码目录结构规划"><a href="#代码目录结构规划" class="headerlink" title="代码目录结构规划"></a>代码目录结构规划</h3><p>GOPATH下的src目录就是接下来开发程序的主要目录，所有的源码都是放在这个目录下面，那么一般我们的做法就是一个目录一个项目，例如: $GOPATH/src/mymath 表示mymath这个应用包或者可执行应用，这个根据package是main还是其他来决定，main的话就是可执行应用，其他的话就是应用包，这个会在后续详细介绍package。</p>
+<p>所以当新建应用或者一个代码包时都是在src目录下新建一个文件夹，文件夹名称一般是代码包名称，当然也允许多级目录，例如在src下面新建了目录$GOPATH/src/github.com/astaxie/beedb 那么这个包路径就是”github.com/astaxie/beedb”，包名称是最后一个目录beedb</p>
+<p>下面我就以mymath为例来讲述如何编写应用包，执行如下代码</p>
+<pre><code>cd $GOPATH/src
+mkdir mymath
+</code></pre><p>新建文件sqrt.go，内容如下</p>
+<pre><code>// $GOPATH/src/mymath/sqrt.go源码如下：
+package mymath
+
+func Sqrt(x float64) float64 {
+    z := 0.0
+    for i := 0; i &lt; 1000; i++ {
+        z -= (z*z - x) / (2 * x)
+    }
+    return z
+}
+</code></pre><p>这样我的应用包目录和代码已经新建完毕，注意：一般建议package的名称和目录名保持一致    </p>
+<h3 id="编译应用"><a href="#编译应用" class="headerlink" title="编译应用"></a>编译应用</h3><p>上面我们已经建立了自己的应用包，如何进行编译安装呢？有两种方式可以进行安装</p>
+<p>1、只要进入对应的应用包目录，然后执行go install，就可以安装了</p>
+<p>2、在任意的目录执行如下代码go install mymath</p>
+<p>安装完之后，我们可以进入如下目录</p>
+<pre><code>cd $GOPATH/pkg/${GOOS}_${GOARCH}
+//可以看到如下文件
+mymath.a
+</code></pre><p>这个.a文件是应用包，那么我们如何进行调用呢？</p>
+<p>接下来我们新建一个应用程序来调用这个应用包</p>
+<p>新建应用包mathapp</p>
+<pre><code>cd $GOPATH/src
+mkdir mathapp
+cd mathapp
+vim main.go
+</code></pre><p>$GOPATH/src/mathapp/main.go源码：</p>
+<pre><code>package main
+
+import (
+    &quot;mymath&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    fmt.Printf(&quot;Hello, world.  Sqrt(2) = %v\n&quot;, mymath.Sqrt(2))
+}
+</code></pre><p>可以看到这个的package是main，import里面调用的包是mymath,这个就是相对于$GOPATH/src的路径，如果是多级目录，就在import里面引入多级目录，如果你有多个GOPATH，也是一样，Go会自动在多个$GOPATH/src中寻找。</p>
+<p>如何编译程序呢？进入该应用目录，然后执行go build，那么在该目录下面会生成一个mathapp的可执行文件</p>
+<pre><code>./mathapp
+</code></pre><p>输出如下内容</p>
+<pre><code>Hello, world.  Sqrt(2) = 1.414213562373095
+</code></pre><p>如何安装该应用，进入该目录执行go install,那么在$GOPATH/bin/下增加了一个可执行文件mathapp, 还记得前面我们把$GOPATH/bin加到我们的PATH里面了，这样可以在命令行输入如下命令就可以执行</p>
+<pre><code>mathapp
+</code></pre><p>也是输出如下内容</p>
+<pre><code>Hello, world.  Sqrt(2) = 1.414213562373095
+</code></pre><p>这里我们展示如何编译和安装一个可运行的应用，以及如何设计我们的目录结构。</p>
+<h3 id="获取远程包"><a href="#获取远程包" class="headerlink" title="获取远程包"></a>获取远程包</h3><p>go语言有一个获取远程包的工具就是go get，目前go get支持多数开源社区(例如：github、googlecode、bitbucket、Launchpad)</p>
+<pre><code>go get github.com/astaxie/beedb
+
+go get -u 参数可以自动更新包，而且当go get的时候会自动获取该包依赖的其他第三方包
+</code></pre><p>通过这个命令可以获取相应的源码，对应的开源平台采用不同的源码控制工具，例如github采用git、googlecode采用hg，所以要想获取这些源码，必须先安装相应的源码控制工具</p>
+<p>通过上面获取的代码在我们本地的源码相应的代码结构如下</p>
+<pre><code>$GOPATH
+    src
+    |--github.com
+            |-astaxie
+                |-beedb
+    pkg
+        |--相应平台
+            |-github.com
+                |--astaxie
+                        |beedb.a
+</code></pre><p>go get本质上可以理解为首先第一步是通过源码工具clone代码到src下面，然后执行go install</p>
+<p>在代码中如何使用远程包，很简单的就是和使用本地包一样，只要在开头import相应的路径就可以</p>
+<pre><code>import &quot;github.com/astaxie/beedb&quot;
+</code></pre><h3 id="程序的整体结构"><a href="#程序的整体结构" class="headerlink" title="程序的整体结构"></a>程序的整体结构</h3><p>通过上面建立的我本地的mygo的目录结构如下所示</p>
+<pre><code>bin/
+    mathapp
+pkg/
+    平台名/ 如：darwin_amd64、linux_amd64
+        mymath.a
+        github.com/
+            astaxie/
+                beedb.a
+src/
+    mathapp
+        main.go
+    mymath/
+        sqrt.go
+    github.com/
+        astaxie/
+                beedb/
+                    beedb.go
+                    util.go
+</code></pre><p>从上面的结构我们可以很清晰的看到，bin目录下面存的是编译之后可执行的文件，pkg下面存放的是应用包，src下面保存的是应用源代码</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zkep.github.io.git/2018/06/07/go.01.2/" data-id="cjmzo35ph0000dyjhipylbw85" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/codes/">codes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/08/go.01.3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          go command
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/06/go.01.1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">go path</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GOPATH与工作空间"><span class="toc-number">1.</span> <span class="toc-text">GOPATH与工作空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GOPATH设置"><span class="toc-number">1.1.</span> <span class="toc-text">GOPATH设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码目录结构规划"><span class="toc-number">1.2.</span> <span class="toc-text">代码目录结构规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译应用"><span class="toc-number">1.3.</span> <span class="toc-text">编译应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取远程包"><span class="toc-number">1.4.</span> <span class="toc-text">获取远程包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序的整体结构"><span class="toc-number">1.5.</span> <span class="toc-text">程序的整体结构</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 zkep&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;773683464@qq.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/codes" class="mobile-nav-link">编码</a>
+  
+    <a href="/games" class="mobile-nav-link">游戏</a>
+  
+    <a href="/films" class="mobile-nav-link">电影</a>
+  
+    <a href="/musics" class="mobile-nav-link">音乐</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>

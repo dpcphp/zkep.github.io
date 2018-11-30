@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>go笔记 | Zkep</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="go基础golang fmt格式“占位符”1golang 的fmt 包实现了格式化I/O函数，类似于C的 printf 和 scanf。">
+<meta name="keywords" content="codes,go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go笔记">
+<meta property="og:url" content="https://zkep.github.io.git/2018/03/26/go/index.html">
+<meta property="og:site_name" content="Zkep">
+<meta property="og:description" content="go基础golang fmt格式“占位符”1golang 的fmt 包实现了格式化I/O函数，类似于C的 printf 和 scanf。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-29T04:16:54.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go笔记">
+<meta name="twitter:description" content="go基础golang fmt格式“占位符”1golang 的fmt 包实现了格式化I/O函数，类似于C的 printf 和 scanf。">
+  
+    <link rel="alternate" href="/atom.xml" title="Zkep" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zkep.github.io.git"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/codes">编码</a>
+        
+          <a class="main-nav-link" href="/games">游戏</a>
+        
+          <a class="main-nav-link" href="/films">电影</a>
+        
+          <a class="main-nav-link" href="/musics">音乐</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zkep</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">编译的人生、确定的轨迹里充满着不确定</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/26/go/" class="article-date">
+  <time datetime="2018-03-26T10:28:43.000Z" itemprop="datePublished">2018-03-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h3 id="go基础"><a href="#go基础" class="headerlink" title="go基础"></a>go基础</h3><h4 id="golang-fmt格式“占位符”"><a href="#golang-fmt格式“占位符”" class="headerlink" title="golang fmt格式“占位符”"></a>golang fmt格式“占位符”</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">golang 的fmt 包实现了格式化I/O函数，类似于C的 printf 和 scanf。</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"># 定义示例类型和变量</span><br><span class="line"><span class="keyword">type</span> Human <span class="keyword">struct</span> &#123;</span><br><span class="line">Name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> people = Human&#123;Name:<span class="string">"zhangsan"</span>&#125;</span><br><span class="line"></span><br><span class="line">普通占位符</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">%v 相应值的默认格式。 Printf(<span class="string">"%v"</span>, people) &#123;zhangsan&#125;，</span><br><span class="line">%+v 打印结构体时，会添加字段名 Printf(<span class="string">"%+v"</span>, people) &#123;Name:zhangsan&#125;</span><br><span class="line">%#v 相应值的Go语法表示 Printf(<span class="string">"#v"</span>, people) main.Human&#123;Name:<span class="string">"zhangsan"</span>&#125;</span><br><span class="line">%T 相应值的类型的Go语法表示 Printf(<span class="string">"%T"</span>, people) main.Human</span><br><span class="line">%% 字面上的百分号，并非值的占位符 Printf(<span class="string">"%%"</span>) %</span><br><span class="line">布尔占位符</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">%t <span class="literal">true</span> 或 <span class="literal">false</span>。 Printf(<span class="string">"%t"</span>, <span class="literal">true</span>) <span class="literal">true</span></span><br><span class="line">整数占位符</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">%b 二进制表示 Printf(<span class="string">"%b"</span>, <span class="number">5</span>) <span class="number">101</span></span><br><span class="line">%c 相应Unicode码点所表示的字符 Printf(<span class="string">"%c"</span>, <span class="number">0x4E2D</span>) 中</span><br><span class="line">%d 十进制表示 Printf(<span class="string">"%d"</span>, <span class="number">0x12</span>) <span class="number">18</span></span><br><span class="line">%o 八进制表示 Printf(<span class="string">"%o"</span>, <span class="number">10</span>) <span class="number">12</span></span><br><span class="line">%q 单引号围绕的字符字面值，由Go语法安全地转义 Printf(<span class="string">"%q"</span>, <span class="number">0x4E2D</span>) <span class="string">'中'</span></span><br><span class="line">%x 十六进制表示，字母形式为小写 a-f Printf(<span class="string">"%x"</span>, <span class="number">13</span>) d</span><br><span class="line">%X 十六进制表示，字母形式为大写 A-F Printf(<span class="string">"%x"</span>, <span class="number">13</span>) D</span><br><span class="line">%U Unicode格式：U+<span class="number">1234</span>，等同于 <span class="string">"U+%04X"</span> Printf(<span class="string">"%U"</span>, <span class="number">0x4E2D</span>) U+<span class="number">4E2</span>D</span><br><span class="line">浮点数和复数的组成部分（实部和虚部）</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">%b 无小数部分的，指数为二的幂的科学计数法，</span><br><span class="line">与 strconv.FormatFloat 的 <span class="string">'b'</span> 转换格式一致。例如 <span class="number">-123456</span>p<span class="number">-78</span></span><br><span class="line">%e 科学计数法，例如 <span class="number">-1234.456e+78</span> Printf(<span class="string">"%e"</span>, <span class="number">10.2</span>) <span class="number">1.020000e+01</span></span><br><span class="line">%E 科学计数法，例如 <span class="number">-1234.456E+78</span> Printf(<span class="string">"%e"</span>, <span class="number">10.2</span>) <span class="number">1.020000E+01</span></span><br><span class="line">%f 有小数点而无指数，例如 <span class="number">123.456</span> Printf(<span class="string">"%f"</span>, <span class="number">10.2</span>) <span class="number">10.200000</span></span><br><span class="line">%g 根据情况选择 %e 或 %f 以产生更紧凑的（无末尾的<span class="number">0</span>）输出 Printf(<span class="string">"%g"</span>, <span class="number">10.20</span>) <span class="number">10.2</span></span><br><span class="line">%G 根据情况选择 %E 或 %f 以产生更紧凑的（无末尾的<span class="number">0</span>）输出 Printf(<span class="string">"%G"</span>, <span class="number">10.20</span>+<span class="number">2i</span>) (<span class="number">10.2</span>+<span class="number">2i</span>)</span><br><span class="line">字符串与字节切片</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">%s 输出字符串表示（<span class="keyword">string</span>类型或[]<span class="keyword">byte</span>) Printf(<span class="string">"%s"</span>, []<span class="keyword">byte</span>(<span class="string">"Go语言"</span>)) Go语言</span><br><span class="line">%q 双引号围绕的字符串，由Go语法安全地转义 Printf(<span class="string">"%q"</span>, <span class="string">"Go语言"</span>) <span class="string">"Go语言"</span></span><br><span class="line">%x 十六进制，小写字母，每字节两个字符 Printf(<span class="string">"%x"</span>, <span class="string">"golang"</span>) <span class="number">676f</span>6c616e67</span><br><span class="line">%X 十六进制，大写字母，每字节两个字符 Printf(<span class="string">"%X"</span>, <span class="string">"golang"</span>) <span class="number">676</span>F6C616E67</span><br><span class="line">指针</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">%p 十六进制表示，前缀 <span class="number">0</span>x Printf(<span class="string">"%p"</span>, &amp;people) <span class="number">0x4f57f</span>0</span><br><span class="line">其它标记</span><br><span class="line">占位符 说明 举例 输出</span><br><span class="line">+ 总打印数值的正负号；对于%q（%+q）保证只输出ASCII编码的字符。</span><br><span class="line">Printf(<span class="string">"%+q"</span>, <span class="string">"中文"</span>) <span class="string">"\u4e2d\u6587"</span></span><br><span class="line">- 在右侧而非左侧填充空格（左对齐该区域）</span><br><span class="line"># 备用格式：为八进制添加前导 <span class="number">0</span>（%#o） Printf(<span class="string">"%#U"</span>, <span class="string">'中'</span>) U+<span class="number">4E2</span>D</span><br><span class="line">为十六进制添加前导 <span class="number">0</span>x（%#x）或 <span class="number">0</span>X（%#X），为 %p（%#p）去掉前导 <span class="number">0</span>x；</span><br><span class="line">如果可能的话，%q（%#q）会打印原始 （即反引号围绕的）字符串；</span><br><span class="line">如果是可打印字符，%U（%#U）会写出该字符的</span><br><span class="line">Unicode 编码形式（如字符 x 会被打印成 U+<span class="number">0078</span> <span class="string">'x'</span>）。</span><br><span class="line"><span class="string">' '</span> (空格)为数值中省略的正负号留出空白（% d）；</span><br><span class="line">以十六进制（% x, % X）打印字符串或切片时，在字节之间用空格隔开</span><br><span class="line"><span class="number">0</span> 填充前导的<span class="number">0</span>而非空格；对于数字，这会将填充移到正负号之后</span><br><span class="line"></span><br><span class="line">golang没有 <span class="string">'%u'</span> 点位符，若整数为无符号类型，默认就会被打印成无符号的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">宽度与精度的控制格式以Unicode码点为单位。宽度为该数值占用区域的最小宽度；精度为小数点之后的位数。</span><br><span class="line">操作数的类型为<span class="keyword">int</span>时，宽度与精度都可用字符 <span class="string">'*'</span> 表示。</span><br><span class="line"></span><br><span class="line">对于 %g/%G 而言，精度为所有数字的总数，例如：<span class="number">123.45</span>，%<span class="number">.4</span>g 会打印<span class="number">123.5</span>，（而 %<span class="number">6.2f</span> 会打印<span class="number">123.45</span>）。</span><br><span class="line"></span><br><span class="line">%e 和 %f 的默认精度为<span class="number">6</span></span><br><span class="line"></span><br><span class="line">对大多数的数值类型而言，宽度为输出的最小字符数，如果必要的话会为已格式化的形式填充空格。</span><br><span class="line"></span><br><span class="line">而以字符串类型，精度为输出的最大字符数，如果必要的话会直接截断。</span><br></pre></td></tr></table></figure>
+<h4 id="go时间处理"><a href="#go时间处理" class="headerlink" title="go时间处理"></a>go时间处理</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回现在时间</span></span><br><span class="line">tNow := time.Now() <span class="comment">//2017-12-24 00:28:44.666352 +0800 CST m=+0.045364117</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//时间转化为string，layout必须为 "2006-01-02 15:04:05"</span></span><br><span class="line">timeNow := tNow.Format(<span class="string">"2006-01-02 15:04:05"</span>)  <span class="comment">//2017-12-24 00:29:21</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将string转为时间格式</span></span><br><span class="line">now, _ := time.ParseInLocation(<span class="string">"2006-01-02 15:04:05"</span>, timeNow, time.UTC) </span><br><span class="line"><span class="comment">//2017-12-24 00:31:17 +0000 UTC</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Add方法和Sub方法是相反的，获取t0和t1的时间距离d是使用Sub</span></span><br><span class="line"><span class="comment">//将t0加d获取t1就是使用Add方法</span></span><br><span class="line"> </span><br><span class="line">k := time.Now()</span><br><span class="line"><span class="comment">//一天之前</span></span><br><span class="line">d, _ := time.ParseDuration(<span class="string">"-24h"</span>)</span><br><span class="line"></span><br><span class="line">fmt.Println(k.Add(d))</span><br><span class="line"><span class="comment">//一周之前</span></span><br><span class="line">fmt.Println(k.Add(d * <span class="number">7</span>))</span><br><span class="line"><span class="comment">//一月之前</span></span><br><span class="line">fmt.Println(k.Add(d * <span class="number">30</span>))</span><br><span class="line"></span><br><span class="line">ts := <span class="string">"2018-05-07 17:45:35"</span></span><br><span class="line">t1, _ := time.ParseInLocation(<span class="string">"2006-01-02 15:04:05"</span>, ts, time.Local)</span><br><span class="line"></span><br><span class="line">v1 := t1.UTC().Unix() </span><br><span class="line">v2 := time.Unix(v1, <span class="number">0</span>).UTC()</span><br><span class="line">v3 := time.Unix(time.Now().Unix(), <span class="number">0</span>).UTC()</span><br><span class="line">fmt.Println(<span class="string">"t1"</span>, t1)  <span class="comment">//t1 2018-05-07 17:45:35 +0800 CST</span></span><br><span class="line">fmt.Println(<span class="string">"v1"</span>, v1)  <span class="comment">//v1 1525686335</span></span><br><span class="line">fmt.Println(<span class="string">"v2"</span>, v2)  <span class="comment">//v2 2018-05-07 09:45:35 +0000 UTC</span></span><br><span class="line">fmt.Println(<span class="string">"v3"</span>, v3)  <span class="comment">//v3 2018-05-07 10:07:21 +0000 UTC</span></span><br></pre></td></tr></table></figure>
+<h4 id="go字符串处理"><a href="#go字符串处理" class="headerlink" title="go字符串处理"></a>go字符串处理</h4><h5 id="strings-Compare-字符串比较大小"><a href="#strings-Compare-字符串比较大小" class="headerlink" title="strings.Compare 字符串比较大小"></a>strings.Compare 字符串比较大小</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> relation <span class="keyword">string</span></span><br><span class="line">uid := <span class="string">"10000000000"</span></span><br><span class="line">remoteuid := <span class="string">"10000000000"</span></span><br><span class="line"><span class="keyword">if</span> strings.Compare(uid, remoteuid) &lt; <span class="number">0</span> &#123;</span><br><span class="line">	relation = fmt.Sprintf(<span class="string">"%x"</span>, md5.Sum([]<span class="keyword">byte</span>(fmt.Sprintf(<span class="string">"%s_%s"</span>, uid, remoteuid))))</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    relation = fmt.Sprintf(<span class="string">"%x"</span>, md5.Sum([]<span class="keyword">byte</span>(fmt.Sprintf(<span class="string">"%s_%s"</span>, remoteuid, uid))))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> uid &gt; remoteuid&#123;</span><br><span class="line">    <span class="comment">// strings.Compare  的返回值为 -1</span></span><br><span class="line"> &#125;<span class="keyword">else</span> <span class="keyword">if</span>  uid &lt; remoteuid&#123;</span><br><span class="line">    <span class="comment">// strings.Compare  的返回值为 -1</span></span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">// 相等strings.Compare  的返回值为 0</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//适合业务系统中好友关系生成共同的关系id</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zkep.github.io.git/2018/03/26/go/" data-id="cjmzo35pr0007dyjhnj4obonf" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/codes/">codes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/05/markdown/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          markdown语法入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/02/hexo-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">hexo搭建github博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#go基础"><span class="toc-number">1.</span> <span class="toc-text">go基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#golang-fmt格式“占位符”"><span class="toc-number">1.1.</span> <span class="toc-text">golang fmt格式“占位符”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#go时间处理"><span class="toc-number">1.2.</span> <span class="toc-text">go时间处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#go字符串处理"><span class="toc-number">1.3.</span> <span class="toc-text">go字符串处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#strings-Compare-字符串比较大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">strings.Compare 字符串比较大小</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2014 - 2018 zkep&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;773683464@qq.com
+    </div>
+  </div>
+</footer>
+ <script src="/jquery/jquery.min.js"></script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/codes" class="mobile-nav-link">编码</a>
+  
+    <a href="/games" class="mobile-nav-link">游戏</a>
+  
+    <a href="/films" class="mobile-nav-link">电影</a>
+  
+    <a href="/musics" class="mobile-nav-link">音乐</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    
+
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/elevator.js"></script>
+  </div>
+</body>
+</html>
